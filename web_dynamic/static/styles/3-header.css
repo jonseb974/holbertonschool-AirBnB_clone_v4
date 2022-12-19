@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+
+/* API settup for header*/
+#api_status {
+	background-color: #cccccc;
+	border-radius: 50%;
+	height: 40px;
+	margin-right: 20px;
+	width: 40px;
+}
+
+#api_status.available {
+	background color: #ff545f
+}
