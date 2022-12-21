@@ -63,4 +63,4 @@ $(document).ready(function () {
 	error: function (xhr, status) {
 	  console.log('error ' + status);
 	}
-  });
+});
