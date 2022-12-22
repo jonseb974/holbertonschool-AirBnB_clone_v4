@@ -1,23 +1,21 @@
 const $ = window.$;
 
-let amenities = {};
+$( document ).ready(function() {
+  let checkboxes = $("input[type=checkbox][name=amenities]")
+  let enabledAmenities = {};
+  let amenities_names = [];
 
-$(document).ready(function () {
-  $('div.amenities input[type=checkbox]').click(function () {
-    let amenity = $(this)[0];
-    console.log($('this'));
-    console.log(amenity);
-    if (amenity['checked'] === true) {
-      amenities[amenity.attributes[0].nodeValue] = amenity.attributes[1].nodeValue;
-      console.log(amenity.attributes[0]);
-      console.log(amenity.attributes[1]);
-      console.log(Object.values(amenities));
+  checkboxes.change(function() {
+    if ($(this).is(':checked')) {
+      enabledAmenities[$(this).data('id')] = $(this).data('name')
     } else {
-      delete amenities[amenity.attributes[0].nodeValue];
+      delete enabledAmenities[$(this).data('id')]
     }
-    $('div.amenities h4').text(Object.values(amenities).sort().toString() + '\xa0');
-    $('div.amenities h4').css({'max-height': '1.25em', 'overflow-y': 'scroll'});
-    console.log(amenities);
-    console.log($('div.amenities h4').text());
+    amenities_names = Object.values(enabledAmenities);
+    if (amenities_names.length == 0) {
+      $(".amenities h4").html("&nbsp;");
+    } else {
+      $(".amenities h4").text(amenities_names.join(", "));
+    }
   });
 });
